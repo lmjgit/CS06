@@ -1,0 +1,63 @@
+C#企业级开发技术练习6答题卡
+
+班级：   信管一班  
+姓名：    李明杰 
+学号：    20190307130 
+
+注：请将答案放置在序号下方。*/
+
+（一）
+ class Teacher<T>
+    {
+        public void field(string fieldName, T t)
+        {
+            Console.WriteLine($"{fieldName}:{t},类型是{t.GetType().Name}");
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Teacher<string> tea = new Teacher<string>();
+            tea.field("姓名", "zhao");
+            Teacher<Decimal > tea2 = new Teacher<Decimal >();
+            tea2.field("工资", 8202.34m);
+            Teacher<Boolean> tea3 = new Teacher<Boolean>();
+            tea3.field("编制", false );
+            Teacher<Single> tea4 = new Teacher<Single>();
+            tea4.field("评价", 90.23f);
+            Teacher<DateTime> tea5 = new Teacher<DateTime>();
+            tea5.field("工作日期", DateTime .Parse ("2019/2/30 23:10:20"));
+
+        }
+    }
+
+（二）
+
+namespace _6_2
+{
+    interface IPay<P,Q>
+    {
+        void Log(P x, Q y);
+
+    }
+    class Employee<T>: IPay<T,string>
+    {
+        public void Log(T pay, string name) =>
+            Console.WriteLine($"{name}:{pay},类型是{pay.GetType().Name}");
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee<long> s1 = new Employee<long>() ;
+            s1.Log(3000,"年终奖");
+            Employee<decimal > s2 = new Employee<decimal >();
+            s2.Log(54321.67m, "核增绩效");
+
+        }
+    }
+}
+
+
+
